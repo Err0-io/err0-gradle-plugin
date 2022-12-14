@@ -139,6 +139,8 @@ public class Err0Wrapper {
                 }
                 String downloadedAgentChecksumValue = hexString.toString();
                 if (checksumValue.equals(downloadedAgentChecksumValue)) {
+                    File f = new File(task.getAgentDirectory());
+                    f.mkdirs();
                     Files.write(new File(task.getErr0AgentJar()).toPath(), agentJarData, StandardOpenOption.CREATE, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
                 } else {
                     throw new Err0Exception("Downloaded jar failed checksum verification.");
